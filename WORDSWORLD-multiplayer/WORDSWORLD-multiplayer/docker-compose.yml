@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: 'wordsworld_data'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '1234'
+    # Optionally, you can expose the port if needed
+    # ports:
+    #   - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+# bash -c "python manage.py migrate && python upload_data.py && python manage.py runserver 0.0.0.0:8000"
+
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:1234@db:5432/wordsworld_data
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://db:5432"]
+      interval: 10s
+      retries: 5
