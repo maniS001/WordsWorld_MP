@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7yko_!mt55r(wt-+_o@@dejpubveo6&-ocz=4vko3%abx8qfz6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wordsworld-mp.onrender.com']
 
 # Application definition
 
