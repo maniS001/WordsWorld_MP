@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -92,14 +93,16 @@ CHANNEL_LAYERS = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wordsworld_data',
-        'USER': 'postgres',
-        'HOST': 'localhost',  # This is the service name of your PostgreSQL container
-        'PASSWORD': '1234',
-        # 'PORT': '5432'  # You can optionally specify the port if needed
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'wordsworld_data',
+    #     'USER': 'postgres',
+    #     'HOST': 'localhost',  # This is the service name of your PostgreSQL container
+    #     'PASSWORD': '1234',
+    # },
+        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+
+    
 }
 
 
