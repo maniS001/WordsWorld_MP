@@ -3,13 +3,8 @@ from django.db.models.fields import IntegerField
 from django.contrib.postgres.fields import ArrayField
 class Quest_Ans(models.Model):
    question = models.CharField(max_length=512)
-   answer = models.CharField(max_length=300)
-   # answer_dummy = models.CharField(max_length=30)
-   # nickname=models.CharField(max_length=30)
-   # period=models.CharField(max_length=10)
-   # nationality=models.CharField(max_length=20)
-   # image=models.ImageField(upload_to='pics')
-   # rank=IntegerField()
+   answer = models.CharField(max_length=300) 
+   
 class RoomInfo(models.Model):
       gameId = models.CharField(max_length=20)
       userId = models.CharField(max_length=100)

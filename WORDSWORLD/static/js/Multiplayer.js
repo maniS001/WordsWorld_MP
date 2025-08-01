@@ -76,7 +76,7 @@ function ShowjoinForm() {
 //..................................................................
 
 function WebSocketConnect(gameId, type) {
-  socket = new WebSocket("ws://192.168.96.180:8000/ws/game/" + gameId);
+  socket = new WebSocket("ws://wordsworld-mp.onrender.com/ws/game/" + gameId);
   // Handle WebSocket events
   socket.onopen = () => {
     console.log("WebSocket connection opened");

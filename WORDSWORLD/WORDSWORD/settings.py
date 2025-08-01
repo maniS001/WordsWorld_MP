@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-7yko_!mt55r(wt-+_o@@dejpubveo6&-ocz=4vko3%abx8qfz6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wordsworld-mp.onrender.com']
+ALLOWED_HOSTS = ['wordsworld-mp.onrender.com',"127.0.0.1"]
 
 # Application definition
 
@@ -100,7 +100,8 @@ DATABASES = {
     #     'HOST': 'localhost',  # This is the service name of your PostgreSQL container
     #     'PASSWORD': '1234',
     # },
-        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse("postgresql://multiplayer_db_outk_user:qtJCXAI5vBsh9a69Y3GptqujekZyLItg@dpg-d261sqe3jp1c73ccfk7g-a.singapore-postgres.render.com/multiplayer_db_outk")
+        # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
     
 }
