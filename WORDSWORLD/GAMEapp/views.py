@@ -100,8 +100,7 @@ def details(req):
         return render(req,'3.html',{'v':v})  
    
    #.................multiplayer........................
-   
-
+    
 def Connect_Websocket(req):
     type =  req.GET.get('type')
     UserName = req.GET.get('UserName')
@@ -123,12 +122,7 @@ def Connect_Websocket(req):
             return JsonResponse({'gameId':gameId,'UserName':UserName,'result':'start game'} , safe=False) 
         else:
             return JsonResponse({'result':'Invalid gameId'} , safe=False) 
-
-  
-            
-            
-            
-         
+          
 def CreateGameId():
     return f"GAME{random.randint(0,100)}"
     

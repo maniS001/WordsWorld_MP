@@ -6,6 +6,7 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
         // myshape.beginFill(0x000000).drawRoundedRect(0, 0, 50, 50,10); #C576F6
         tintclr = 0xFFFFFF
         
+        
         if(!letter){
           Number_btn1 = number_btn_empty;
         }else if(letter&&Identity==2){
