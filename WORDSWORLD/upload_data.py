@@ -3,7 +3,7 @@ import os
 import django
 from django.core.exceptions import ValidationError
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WORDSWORD.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WORDSWORLD.settings')
 django.setup()
 from GAMEapp.models import Quest_Ans
 
