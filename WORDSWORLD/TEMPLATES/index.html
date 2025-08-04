@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="static/js/Images_bytecoded.js"></script>
+    {% load static %}
+    <script src="{% static 'js/Images_bytecoded.js' %}"></script>
+    <script src="{% static 'lib/pixi.js' %}"></script>
 
-    {% comment %} <script src="https://pixijs.download/release/pixi.min.js"></script> {% endcomment %}
-    <script type="text/javascript" src="static/lib/pixi.js"></script>
-
-    <link rel="stylesheet" href="static/css/style.css" />
-    <link rel="stylesheet" href="static/css/bootstrap.css" />
-    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <script src="{% static 'js/bootstrap.js' %}"></script>
 
     <style>
       .nav-item {
@@ -21,72 +20,64 @@
     </style>
   </head>
   <body style="overflow:hidden;">
-    <div id="bgdiv" style="background-color: transparent !important; "></div>
-    <div id="tsparticle" style="background-color: transparent !important;" ></div>
+    <div id="bgdiv" style="background-color: transparent !important;"></div>
+    <div id="tsparticle" style="background-color: transparent !important;"></div>
 
-    <script type="text/javascript" src="static/lib/jquery.js"></script>
-<script>
-  document.getElementById("tsparticle").style.visibility = "hidden"
-</script>
-
-
-
-    
+    <script src="{% static 'lib/jquery.js' %}"></script>
+    <script>
+      document.getElementById("tsparticle").style.visibility = "hidden";
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.1.3/tsparticles.bundle.min.js"></script>
-    
-    <script type="text/javascript" src="static/lib/howler.min.js"></script>
-  
-    <script type="text/javascript" src="static/js/Initializer.js"></script>
-    <script type="text/javascript" src="static/js/ButtonsCreator.js"></script>
-    <script type="text/javascript" src="static/js/main.js"></script>
-    <script type="text/javascript" src="static/js/multiplayer_main.js"></script>
 
-    {% comment %} multiplayer_main.js {% endcomment %}
-    <script type="text/javascript" src="static/js/preload.js"></script>
-    <script type="text/javascript" src="static/js/tsparticle.js"></script>
+    <script src="{% static 'lib/howler.min.js' %}"></script>
+    <script src="{% static 'js/Initializer.js' %}"></script>
+    <script src="{% static 'js/ButtonsCreator.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/multiplayer_main.js' %}"></script>
+    <script src="{% static 'js/preload.js' %}"></script>
+    <script src="{% static 'js/tsparticle.js' %}"></script>
 
-    <!-- Button trigger modal -->
     <button type="button" id="launchModalBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden>Launch demo modal</button>
-    <!-- Modal -->
-    <div class="modal fade justify-content-center align-items-center" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border border-secondary">
           <div class="modal-header mb-0">
-            {% comment %} <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> {% endcomment %}
             <ul class="nav nav-tabs">
               <li class="nav-item text-dark">
                 <button class="nav-link m-0 active" id="createBtn" onclick="ShowCreateForm()">CREATE</button>
               </li>
               <li class="nav-item text-dark">
-                <button class="nav-link" id="joinBtn" aria-current="page" onclick="ShowjoinForm()">JOIN</button>
+                <button class="nav-link" id="joinBtn" onclick="ShowjoinForm()">JOIN</button>
               </li>
             </ul>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="" id="createForm" class="container-fluid align-items-center">
+            <form id="createForm" class="container-fluid align-items-center">
               <div class="row align-items-center justify-content-center">
                 <p>Don't have game Id? Create game</p>
                 <div class="col-12 mb-3">
-                  <label for="exampleFormControlInput1" class="form-label fw-bold fs-5">Enter Your Name</label>
-                  <input type="text" class="form-control border border-secondary" name="userName" id="" />
+                  <label class="form-label fw-bold fs-5">Enter Your Name</label>
+                  <input type="text" class="form-control border border-secondary" name="userName" />
                 </div>
                 <div class="col-1 mb-3 w-100 text-center">
                   <input class="btn btn-primary container-fluid fs-4" type="submit" value="CREATE GAME" id="sendName" />
                 </div>
               </div>
             </form>
-            <form action="" id="joiningForm" class="container-fluid align-items-center" hidden>
+
+            <form id="joiningForm" class="container-fluid align-items-center" hidden>
               <div class="row align-items-center justify-content-center">
                 <p> Do you Have gameId? Join game</p>
                 <div class="col-12 mb-3">
-                  <label for="exampleFormControlInput1" class="form-label fw-bold fs-5">Enter Your Name</label>
-                  <input type="text" class="form-control border border-secondary" name="userName" id="" />
+                  <label class="form-label fw-bold fs-5">Enter Your Name</label>
+                  <input type="text" class="form-control border border-secondary" name="userName" />
                 </div>
                 <div class="col-12 mb-3">
-                  <label for="exampleFormControlInput1" class="form-label fs-5 fw-bold">Enter Room ID</label>
-                  <input type="text" class="form-control border border-secondary" name="gameId" id="" />
+                  <label class="form-label fs-5 fw-bold">Enter Room ID</label>
+                  <input type="text" class="form-control border border-secondary" name="gameId" />
                 </div>
                 <div class="col-1 mb-3 w-100 text-center">
                   <input class="btn btn-primary container-fluid fs-4" type="submit" value="JOIN GAME" />
@@ -94,114 +85,86 @@
               </div>
             </form>
           </div>
-    <button type="button" class="btn btn-secondary" id="close-btn" data-bs-dismiss="modal" hidden>Close</button>
-
+          <button type="button" class="btn btn-secondary" id="close-btn" data-bs-dismiss="modal" hidden>Close</button>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="static/js/Multiplayer.js"></script>
 
+    <script src="{% static 'js/Multiplayer.js' %}"></script>
 
-
-    <!-- Button trigger modal -->
-  <button type="button" id="copy_id_modal-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#copy_id_modal" hidden></button> 
-
-  <div class="modal fade" id="copy_id_modal" tabindex="-1" aria-labelledby="copy_id_modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="copy_id_modalLabel">Share This Code to Your Friend</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex align-items-center">
-          <b class="fs-4 pe-3" id="gameId_text"></b>
-          <div id="copied_text" class="alert alert-info text-center my-3 h-1 w-25 h-10" role="alert" hidden>
-            Copied
+    <button type="button" id="copy_id_modal-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#copy_id_modal" hidden></button>
+    <div class="modal fade" id="copy_id_modal" tabindex="-1" aria-labelledby="copy_id_modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="copy_id_modalLabel">Share This Code to Your Friend</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div> 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="close-btn1" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="copyGameId()">Copy</button>
+          <div class="modal-body d-flex align-items-center">
+            <b class="fs-4 pe-3" id="gameId_text"></b>
+            <div id="copied_text" class="alert alert-info text-center my-3 w-25" role="alert" hidden>Copied</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="close-btn1" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="copyGameId()">Copy</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <button type="button" id="result_popup-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#result_popup" hidden>result</button>
+    <div class="modal fade" id="result_popup" tabindex="-1" aria-labelledby="result_popupLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="result_popupLabel">ROUND RESULT</h5>
+            <button type="button" id="result_close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><b>TOTAL QUESTIONS:</b> <span id="total_qns">50</span></p>
+            <p><b>ANSWERED:</b> <span id="Answered">35</span></p>
+            <p><b>MISSED:</b> <span id="missed">15</span></p>
 
+            <table class="table border bg-primary">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>YOU</td>
+                  <td id="user_1_points">14</td>
+                </tr>
+                <tr>
+                  <td>OPPONENT</td>
+                  <td id="user_2_points">21</td>
+                </tr>
+              </tbody>
+            </table>
 
-
-  <button type="button" id="result_popup-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#result_popup" hidden>result</button> 
-
-  {% comment %} ............................................. {% endcomment %}
-
-<div class="modal fade" id="result_popup" tabindex="-1" aria-labelledby="result_popupLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        {% comment %} <h4 class="modal-title text-success" id="result_popupLabel">Round Completed!!</h4>  {% endcomment %}
-        <h5 class="modal-title" id="result_popupLabel">ROUND RESULT</h5>
-        <button type="button" id="result_close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p><b>TOTAL QUESTIONS:</b> <ID id="total_qns">50</ID></p>
-        <p><b>ANSWERED:</b><ID id="Answered">35</ID> </p>
-        <p><b>MISSED:</b> <ID id="missed">15</ID></p> 
-
-        <table class="table border bg-primary">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>YOU</td>
-              <tl>
-              <td id="user_1_points">14</td>
-            </tr>
-
-            
-            <tr >
-              <td>OPPONENT</td>
-              <td id="user_2_points">21</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h1 class="text-center"><b class="text-primary">WINNER:</b> <ID class="" id="winner">OPPONENT</ID></h1>
-      </div> 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        {% comment %} <button type="button" class="btn btn-primary" onclick="preload();">EXIT</button> {% endcomment %}
+            <h1 class="text-center">
+              <b class="text-primary">WINNER:</b> <span id="winner">OPPONENT</span>
+            </h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-  {% comment %} ............................................. {% endcomment %}
-  
-  <script>
-    // Hide the #copied_text initially
-    var gameIdText = document.getElementById("copied_text").hidden = true;
-  function copyGameId() {
-    // Get the text to copy
-    var gameIdText = document.getElementById("gameId_text").innerText;
-  
-    // Use navigator clipboard API to copy
-    navigator.clipboard.writeText(gameIdText)
-      .then(function() {
-        console.log('Text copied successfully');
-        var gameIdText = document.getElementById("copied_text").hidden=false;
-
-        // Optionally, you can provide user feedback here, like showing a tooltip
-      })
-      .catch(function(err) {
-        console.error('Could not copy text: ', err);
-        // Handle errors, if any
-      });
-  }
-  
-</script>
+    <script>
+      document.getElementById("copied_text").hidden = true;
+      function copyGameId() {
+        const gameIdText = document.getElementById("gameId_text").innerText;
+        navigator.clipboard.writeText(gameIdText)
+          .then(() => {
+            document.getElementById("copied_text").hidden = false;
+          })
+          .catch(err => console.error("Could not copy text: ", err));
+      }
+    </script>
   </body>
 </html>

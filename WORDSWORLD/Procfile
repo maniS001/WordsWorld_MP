@@ -1,1 +1,1 @@
-web: daphne WORDSWORLD.asgi:application
+daphne -b 0.0.0.0 -p $PORT WORDSWORLD.asgi:application
