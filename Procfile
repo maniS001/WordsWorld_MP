@@ -1,1 +1,1 @@
-web: gunicorn WORDSWORD.WORDSWORD.wsgi
+web: gunicorn WORDSWORLD.WORDSWORLD.wsgi
