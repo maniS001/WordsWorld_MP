@@ -48,6 +48,7 @@ WSGI_APPLICATION = 'WORDSWORLD.wsgi.application'
 ASGI_APPLICATION = 'WORDSWORLD.asgi.application'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

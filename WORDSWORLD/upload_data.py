@@ -215,3 +215,10 @@ for entry in data_to_insert:
         Quest_Ans.objects.create(**entry)
     except ValidationError as e:
         print(f"Validation error: {e}")
+
+
+# Scrapy
+
+# Autobahn
+
+# Twisted Web
