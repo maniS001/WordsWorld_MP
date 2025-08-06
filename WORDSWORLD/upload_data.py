@@ -6,210 +6,261 @@ from django.core.exceptions import ValidationError
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WORDSWORLD.settings')
 django.setup()
 from GAMEapp.models import Quest_Ans
+Quest_Ans.objects.all().delete()
 
 data_to_insert = [
   {
-    "question": "which of the following introduced the flavor of unix named solaris ?",
-    "answer": "Sun microsystem"
+    "question": "What is the capital of Australia?",
+    "answer": "Canberra"
   },
   {
-    "question": "what is the core of the linux operating system?",
-    "answer": "Kernel"
+    "question": "Which planet is known as the Red Planet?",
+    "answer": "Mars"
   },
   {
-    "question": "who is the founder of linux kernel?",
-    "answer": "Linus Torvalds"
+    "question": "Who wrote the national anthem of India?",
+    "answer": "Rabindranath Tagore"
   },
   {
-    "question": "what approach does an application use to communicate with the kernel?",
-    "answer": "System calls"
+    "question": "Which is the largest continent in the world?",
+    "answer": "Asia"
   },
   {
-    "question": "which has excellent support for older hardware?",
-    "answer": "Linux"
+    "question": "What is the currency of Japan?",
+    "answer": "Yen"
   },
   {
-    "question": "what is the other name of new shell?",
-    "answer": "Child shell"
+    "question": "Who is known as the Father of the Indian Constitution?",
+    "answer": "B. R. Ambedkar"
   },
   {
-    "question": "where do the users arrive after entering exit in linux system?",
-    "answer": "Login prompt"
+    "question": "Which river is the longest in the world?",
+    "answer": "Nile"
   },
   {
-    "question": "who can change the password of any user?",
-    "answer": "SA"
+    "question": "What is the chemical symbol for Gold?",
+    "answer": "Au"
   },
   {
-    "question": "which system provides excellent security features?",
-    "answer": "Linux"
+    "question": "Who discovered gravity?",
+    "answer": "Isaac Newton"
   },
   {
-    "question": "who was very much attracted by elegance and effectiveness of UNIX?",
-    "answer": "Linus"
+    "question": "Which country is known as the Land of the Rising Sun?",
+    "answer": "Japan"
   },
   {
-    "question": "which text file contains linux  commands?",
-    "answer": "Shell script"
+    "question": "What is the smallest prime number?",
+    "answer": "2"
   },
   {
-    "question": "which operating system was developed by the contribution of many people throughout the world?",
-    "answer": "Linux"
+    "question": "Who painted the Mona Lisa?",
+    "answer": "Leonardo da Vinci"
   },
   {
-    "question": "which version of UNIX was handled by the students of the university of Helsinki?",
-    "answer": "Minix"
+    "question": "Which is the hardest natural substance on Earth?",
+    "answer": "Diamond"
   },
   {
-    "question": "which standard of unix was followed by linux?",
-    "answer": "ANSI"
+    "question": "What is the tallest mountain in the world?",
+    "answer": "Mount Everest"
   },
   {
-    "question": "which is called as full name of directory?",
-    "answer": "Path name"
+    "question": "Which organ purifies our blood?",
+    "answer": "Kidney"
   },
   {
-    "question": "which program combines linux commands to solve the given problems?",
-    "answer": "Shell"
+    "question": "Which is the most spoken language in the world?",
+    "answer": "English"
   },
   {
-    "question": "what is the space between end of the line and end of the screen is called as?",
-    "answer": "Dead space"
+    "question": "Who is the current Secretary-General of the United Nations?",
+    "answer": "Ant\u00f3nio Guterres"
   },
   {
-    "question": "which vi editor,makes the keyboard to play a role?",
-    "answer": "Dual"
+    "question": "What is the name of India's first satellite?",
+    "answer": "Aryabhata"
   },
   {
-    "question": "In what mode of editing ,the keyboard behaves as a normal typewriter with the exception?",
-    "answer": "Input mode"
+    "question": "Which state in India has the highest literacy rate?",
+    "answer": "Kerala"
   },
   {
-    "question": "which command takes data from one command to another command?",
-    "answer": "Pipe"
+    "question": "Which country has won the most FIFA World Cups?",
+    "answer": "Brazil"
   },
   {
-    "question": "which is linus default shell?",
-    "answer": "BAH shell"
+    "question": "What is the national flower of India?",
+    "answer": "Lotus"
   },
   {
-    "question": "what is the process does not allow any unauthorized person to access any of ourdirectories or file?",
-    "answer": "Verification"
+    "question": "Who was the first woman Prime Minister of India?",
+    "answer": "Indira Gandhi"
   },
   {
-    "question": "which indicate you to find the mode you are working?",
-    "answer": "Beep sound"
+    "question": "Which Indian city is known as the Pink City?",
+    "answer": "Jaipur"
   },
   {
-    "question": "who are placeholders to store values?",
-    "answer": "Variables"
+    "question": "What is the SI unit of temperature?",
+    "answer": "Kelvin"
   },
   {
-    "question": "what type of editing is possible by Ed editor?",
-    "answer": "One line"
+    "question": "Which gas is most abundant in the Earth's atmosphere?",
+    "answer": "Nitrogen"
   },
   {
-    "question": "which command clears the screen?",
-    "answer": "Clear"
+    "question": "What is the boiling point of water?",
+    "answer": "100\u00b0C"
   },
   {
-    "question": "what based of PC's ,linux was specifically designed?",
-    "answer": "Intel"
+    "question": "Which vitamin is provided by sunlight?",
+    "answer": "Vitamin D"
   },
   {
-    "question": "where did the file system can be used to unambiguously identified and referenced?",
-    "answer": "Tree structure"
+    "question": "Who invented the telephone?",
+    "answer": "Alexander Graham Bell"
   },
   {
-    "question": "which feature is used to prevent overwriting an existing file the redirection operation?",
-    "answer": "Noclobber"
+    "question": "Which metal is liquid at room temperature?",
+    "answer": "Mercury"
   },
   {
-    "question": "when we want replace a file system we have to present file system?",
-    "answer": "Unmount"
+    "question": "Which Indian state is known for tea production?",
+    "answer": "Assam"
   },
   {
-    "question": "In Linux ,if all the members of the group share their files,they are called as ",
-    "answer": "Group users"
+    "question": "What is the national bird of India?",
+    "answer": "Peacock"
   },
   {
-    "question": "who can change his/her password with the password command?",
-    "answer": "A user"
+    "question": "Which is the largest desert in the world?",
+    "answer": "Sahara"
   },
   {
-    "question": "which shell provides many of the tools found in C language?",
-    "answer": "Linux"
+    "question": "Which country gifted the Statue of Liberty to the USA?",
+    "answer": "France"
   },
   {
-    "question": "which was widely distributed over the Internet?",
-    "answer": "Linux"
+    "question": "Who is known as the Missile Man of India?",
+    "answer": "A. P. J. Abdul Kalam"
   },
   {
-    "question": "which was the operating system was created mainly by efforts of Ken Thomson?",
-    "answer": "Unix"
+    "question": "What is the square root of 144?",
+    "answer": "12"
   },
   {
-    "question": "what is mainly used for creating,deleteing and editing the files?",
-    "answer": "Editors"
+    "question": "What is the value of pi (\u03c0) up to 2 decimal places?",
+    "answer": "3.14"
   },
   {
-    "question": "which directory is assigned to the user when he/she enters into the system for the first time,by the System Administrator(SA)?",
-    "answer": "Home"
+    "question": "Who was the first President of India?",
+    "answer": "Dr.Rajendra Prasad"
   },
   {
-    "question": "which version can run on any machine available now?",
-    "answer": "Suitable linux"
+    "question": "In which year did India gain independence?",
+    "answer": "1947"
   },
   {
-    "question": "who developed an effective PC version of Unix for Minix users?",
-    "answer": "Linus Torvalds"
+    "question": "What is the capital of France?",
+    "answer": "Paris"
   },
   {
-    "question": "which of the following is not considered on of the main categories of computer graphics?",
-    "answer": "Bar graphis"
+    "question": "Which organ is responsible for pumping blood?",
+    "answer": "Heart"
   },
   {
-    "question": "How to connect a file system on a storage device and our main directory tree by?",
-    "answer": "Mounting"
+    "question": "Which animal is known as the Ship of the Desert?",
+    "answer": "Camel"
   },
   {
-    "question": "which of the storage class may help in faster execution?",
-    "answer": "Register"
+    "question": "Who invented the light bulb?",
+    "answer": "Thomas Edison"
   },
   {
-    "question": "when accessing a structure ,the identifier to the left of the operator is the name ?",
-    "answer": "Structure variable"
+    "question": "Which gas is used for breathing by humans?",
+    "answer": "Oxygen"
   },
   {
-    "question": "which of the following is not a valid data type in C language?",
-    "answer": "Repeat until statement"
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "answer": "William Shakespeare"
   },
   {
-    "question": "who developed C language?",
-    "answer": "Dennis Ritchie"
+    "question": "Which state is the largest in India by area?",
+    "answer": "Rajasthan"
   },
   {
-    "question": "which of the following sorting algorithm is the slowest?",
-    "answer": "Bubble sort"
+    "question": "What is the process of water cycle evaporation followed by?",
+    "answer": "Condensation"
   },
   {
-    "question": "which of the following is not a linear data structure?",
-    "answer": "Binary Tree"
+    "question": "What is the speed of light?",
+    "answer": "3 x 10^8 m/s"
   },
   {
-    "question": "which of the following is not an open addressing technique to resolve collision?",
-    "answer": "Cubic probing"
+    "question": "What is the name of our galaxy?",
+    "answer": "Milky Way"
   },
   {
-    "question": "which of the following data structure is more appropriate for implementing quick sort iteratively?",
-    "answer": "Stack"
+    "question": "Which is the national animal of India?",
+    "answer": "Tiger"
   },
   {
-    "question": "which of the following  data structure is used to represent a relationship between pairs,where relationship is not hierarchical?",
-    "answer": "Graph"
+    "question": "Which is the largest mammal?",
+    "answer": "Blue Whale"
   }
+]+[
+  { "question": "What is the capital of Australia?", "answer": "Canberra" },
+  { "question": "Who discovered gravity?", "answer": "Isaac Newton" },
+  { "question": "Which planet is known as the Red Planet?", "answer": "Mars" },
+  { "question": "Which element has the chemical symbol 'O'?", "answer": "Oxygen" },
+  { "question": "What is the longest river in the world?", "answer": "Nile" },
+  { "question": "Who wrote 'Romeo and Juliet'?", "answer": "William Shakespeare" },
+  { "question": "Which continent is known as the Dark Continent?", "answer": "Africa" },
+  { "question": "Who was the first President of the United States?", "answer": "George Washington" },
+  { "question": "Which gas is most abundant in Earth's atmosphere?", "answer": "Nitrogen" },
+  { "question": "What is the square root of 144?", "answer": "12" },
+  { "question": "Which metal is liquid at room temperature?", "answer": "Mercury" },
+  { "question": "In which year did World War II end?", "answer": "1945" },
+  { "question": "Who painted the Mona Lisa?", "answer": "Leonardo da Vinci" },
+  { "question": "Which is the smallest planet in our solar system?", "answer": "Mercury" },
+  { "question": "What is the currency of Japan?", "answer": "Yen" },
+  { "question": "Which language has the most native speakers?", "answer": "Mandarin Chinese" },
+  { "question": "Which country gifted the Statue of Liberty to the USA?", "answer": "France" },
+  { "question": "Which organ purifies blood in the human body?", "answer": "Kidney" },
+  { "question": "What is the hardest natural substance on Earth?", "answer": "Diamond" },
+  { "question": "Which planet has the most moons?", "answer": "Saturn" },
+  { "question": "What is the national animal of India?", "answer": "Bengal Tiger" },
+  { "question": "What does 'HTTP' stand for?", "answer": "HyperText Transfer Protocol" },
+  { "question": "Which scientist proposed the theory of relativity?", "answer": "Albert Einstein" },
+  { "question": "What is the capital city of Canada?", "answer": "Ottawa" },
+  { "question": "How many continents are there?", "answer": "Seven" },
+  { "question": "Which ocean is the largest?", "answer": "Pacific Ocean" },
+  { "question": "Who invented the telephone?", "answer": "Alexander Graham Bell" },
+  { "question": "Which is the highest mountain in the world?", "answer": "Mount Everest" },
+  { "question": "What is the study of plants called?", "answer": "Botany" },
+  { "question": "Which vitamin is produced by sunlight?", "answer": "Vitamin D" },
+  { "question": "Which animal is known as the Ship of the Desert?", "answer": "Camel" },
+  { "question": "What is the freezing point of water in Celsius?", "answer": "0" },
+  { "question": "Who was the first man to walk on the moon?", "answer": "Neil Armstrong" },
+  { "question": "Which blood group is known as the universal donor?", "answer": "O negative" },
+  { "question": "Which Indian city is known as the Pink City?", "answer": "Jaipur" },
+  { "question": "Who is known as the 'Father of the Nation' in India?", "answer": "Mahatma Gandhi" },
+  { "question": "Which country is known as the Land of the Rising Sun?", "answer": "Japan" },
+  { "question": "What is the main source of energy for Earth?", "answer": "Sun" },
+  { "question": "What is the name of the largest desert in the world?", "answer": "Sahara Desert" },
+  { "question": "What does DNA stand for?", "answer": "Deoxyribonucleic Acid" },
+  { "question": "Which planet is closest to the sun?", "answer": "Mercury" },
+  { "question": "What is the boiling point of water in Celsius?", "answer": "100" },
+  { "question": "Which is the national flower of India?", "answer": "Lotus" },
+  { "question": "Who was the first woman Prime Minister of India?", "answer": "Indira Gandhi" },
+  { "question": "What is the name of the process by which plants make food?", "answer": "Photosynthesis" },
+  { "question": "Which festival is known as the Festival of Lights?", "answer": "Diwali" },
+  { "question": "Which sport is known as the 'king of sports'?", "answer": "Soccer" },
+  { "question": "What is the most widely spoken language in the world?", "answer": "English" },
+  { "question": "Which bird is the national bird of India?", "answer": "Peacock" },
+  { "question": "What is the name of India’s highest civilian award?", "answer": "Bharat Ratna" }
 ]
-
 for entry in data_to_insert:
     try:
         Quest_Ans.objects.create(**entry)
