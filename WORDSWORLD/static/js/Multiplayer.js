@@ -20,8 +20,9 @@ createForm.addEventListener("submit", (e) => {
     document.getElementById("gameId_text").textContent = data.gameId;
 
     
-
+    setTimeout(() => {
       WebSocketConnect(data.gameId);
+    }, 1000);
     },
     error: function (error) {
       console.error("Error:", error);
@@ -49,7 +50,10 @@ joiningForm.addEventListener("submit", (e) => {
     success: async function (data) {
       console.log(data);
       if (data.result == "start game") {
-        await WebSocketConnect(data.gameId, "join");
+            setTimeout(async () => {
+              await WebSocketConnect(data.gameId, "join");
+        }, 1000);
+
         //    console.log("connecting to websocket")
       }
     },
