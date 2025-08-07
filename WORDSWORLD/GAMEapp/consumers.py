@@ -26,7 +26,7 @@ class Consumers(AsyncWebsocketConsumer):
         # self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = f'game_{self.room_name}'
         self.Questions = await self.get_questions() 
-        self.QuestionNumbers = [i for i in range(0,3)]
+        self.QuestionNumbers = [i for i in range(0,50)]
         # Join room group
         await self.channel_layer.group_add(
             self.room_group_name,
