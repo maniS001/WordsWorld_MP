@@ -1,5 +1,5 @@
 //.........................................................
-var socket;
+// var socket;
 let createForm = document.getElementById("createForm");
 createForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -20,9 +20,8 @@ createForm.addEventListener("submit", (e) => {
     document.getElementById("gameId_text").textContent = data.gameId;
 
     
-    setTimeout(() => {
+    
       WebSocketConnect(data.gameId);
-    }, 1000);
     },
     error: function (error) {
       console.error("Error:", error);
@@ -50,10 +49,7 @@ joiningForm.addEventListener("submit", (e) => {
     success: async function (data) {
       console.log(data);
       if (data.result == "start game") {
-            setTimeout(async () => {
-              await WebSocketConnect(data.gameId, "join");
-        }, 1000);
-
+        await WebSocketConnect(data.gameId, "join");
         //    console.log("connecting to websocket")
       }
     },
@@ -82,7 +78,7 @@ function ShowjoinForm() {
 function WebSocketConnect(gameId, type) {
   let protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
 let ws_url = protocol + window.location.host + "/ws/game/"+ gameId;
-let socket = new WebSocket(ws_url);
+ socket = new WebSocket(ws_url);
   // socket = new WebSocket("https://wordsworld-mp.onrender.com/ws/game/" + gameId);
   // Handle WebSocket events
   socket.onopen = () => {

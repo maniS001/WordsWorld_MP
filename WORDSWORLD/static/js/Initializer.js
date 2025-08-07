@@ -101,6 +101,8 @@ var UserAnsarr = []
 var UserAnsText = ""
 var Main;
 var Mult_Main;
+var socket;
+
 var PointsPosX = 925
 var PointsPosY = -50
 var qnNumbersArr;

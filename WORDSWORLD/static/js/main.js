@@ -428,6 +428,8 @@ function main() {
 // Get the randomly selected value
      qnCount = qnNumbersArr[randomIndex];
     qnNumber = QnsArr.length-qnNumbersArr.length;
+  console.log(qnNumber,"qnNumber")
+
     qnNumbersArr.splice(randomIndex, 1);
     ShuffleArr = [];
 
