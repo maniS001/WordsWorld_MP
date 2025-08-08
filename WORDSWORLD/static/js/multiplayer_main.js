@@ -178,11 +178,11 @@ function main_mult() {
     Mult_Main.deleteFun();
   });
 
-  Exitfun(70+280, top_bar.height / 4);
+  Exitfun(70+350, top_bar.height / 4);
   function Exitfun(posX, posY) {
     ExitBut = PIXI.Sprite.from("../static/image/ExitBut_img.png");
     ExitBut.x = posX;
-    ExitBut.y = posY-50;
+    ExitBut.y = posY-35;
     console.log(ExitBut.width / 2);
     ExitBut.anchor.set(0.5, 0.5);
     ExitBut.scale.x = 0.25;
