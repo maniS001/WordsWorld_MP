@@ -251,7 +251,7 @@ function main_mult() {
     console.log(SpaceInfo, "SpaceInfoSpaceInfo");
     for (index = 0; index < SpaceInfo.length; index++) {
       console.log(SpaceInfo[index]);
-      setBlankboxes(SpaceInfo[index] - decval, Yval);
+      setBlankboxes(SpaceInfo[index] - decval, Yval+110);
       decval = SpaceInfo[index];
       SpaceInfo[index];
       Yval += 73;
