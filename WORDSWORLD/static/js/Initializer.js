@@ -10,7 +10,7 @@ var Qntext;
 var positionY = 0;
 var AnswerWord;
 // var qnCount = 0
-var timeCount = 16
+var timeCount = 31
 var ExitFlag = false
 var opp_Point = 0;
 var timerTimeout

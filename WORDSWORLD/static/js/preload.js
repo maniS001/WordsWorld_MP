@@ -70,7 +70,7 @@ function preload() {
   map = {};
   positionX = 0;
   positionY = 0;
-  timeCount = 16;
+  timeCount = 31;
   count = 0;
   clearInterval(timerInterval)
   clearTimeout(timerTimeout)
