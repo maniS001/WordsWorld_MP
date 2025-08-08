@@ -1,5 +1,5 @@
 function main() {
-  app.renderer.view.classList.add("border", "border-black", "shadow");
+  // app.renderer.view.classList.add("border", "border-black", "shadow");
   document.getElementById("tsparticle").style.visibility = "hidden";
 
   // ............creating a stage to keep all  things ......................................................
@@ -44,7 +44,6 @@ function main() {
 
   // ............................................
   top_bar_container = new PIXI.Container();
-
   app.stage.addChild(top_bar_container);
 
   top_bar = new PIXI.Graphics();
@@ -94,8 +93,8 @@ function main() {
     profile_bg,
     profiletext
   );
-  pointsContainer.y = -185;
-  pointsContainer.x = 120;
+  pointsContainer.y = -185-35;
+  pointsContainer.x = 120-230;
   top_bar_container.addChild(pointsContainer);
 
   var Img = hint_icon.src;
@@ -137,11 +136,11 @@ function main() {
     Main.deleteFun();
   });
 
-  Exitfun(70, top_bar.height / 4);
+  Exitfun(70+350, top_bar.height / 4);
   function Exitfun(posX, posY) {
     ExitBut = PIXI.Sprite.from("../static/image/ExitBut_img.png");
     ExitBut.x = posX;
-    ExitBut.y = posY;
+    ExitBut.y = posY-35;
     console.log(ExitBut.width / 2);
     ExitBut.anchor.set(0.5, 0.5);
     ExitBut.scale.x = 0.25;
@@ -161,12 +160,16 @@ function main() {
       preload();
     });
   }
-  Qntext = new PIXI.Text("2", {
+  Qntext = new PIXI.Text("Loading...", {
     fill: "white",
     fontSize: 30,
     wordWrap: true,
     wordWrapWidth: AppWidth / 2,
     align: "center",
+    fontWeight:"bold",
+    dropShadow:true,
+    dropShadowAlpha:0.3
+    
   });
   Qntext.anchor.set(0.5, 0.5);
   Qntext.x = 1350 / 2;
@@ -182,8 +185,8 @@ function main() {
     for (i = 0; i < ShuffleArr.length; i++) {
       map["name_" + i] = LetterAndShape(
         ShuffleArr[i],
-        520 + positionX * 65,
-        60 + positionY * 65,
+        483 + positionX * 80,
+        90 + positionY * 80,
         1,
         this
       ); // using  class that create all shapes............................................................
@@ -207,7 +210,7 @@ function main() {
     console.log(SpaceInfo, "SpaceInfoSpaceInfo");
     for (index = 0; index < SpaceInfo.length; index++) {
       console.log(SpaceInfo[index]);
-      setBlankboxes(SpaceInfo[index] - decval, Yval);
+      setBlankboxes(SpaceInfo[index] - decval, Yval+110);
       decval = SpaceInfo[index];
       SpaceInfo[index];
       Yval += 73;
@@ -217,7 +220,7 @@ function main() {
       for (k = 0; k <= Anslength1 - 1; k++) {
         map2["shape_" + k] = LetterAndShape(
           "",
-          AppWidth / 2 - (Anslength1 / 2) * 85 + k * 85,
+          AppWidth / 2 - (Anslength1 / 2) * 65 + k * 65,
           // AppWidth / 2,
           Yval,
           0,
@@ -225,8 +228,8 @@ function main() {
         );
         AnsShapeArr.push(map2["shape_" + k]);
         console.log(AnsShapeArr[k].position,"AnsShapeArr")
-        ClearBut.x = map2["shape_" + k].x + map2["shape_" + k].width;
-        ClearBut.y = map2["shape_" + k].y + 150;
+        ClearBut.x =AppWidth / 2// map2["shape_" + k].x + map2["shape_" + k].width;
+        ClearBut.y = map2["shape_" + k].y + 225;
       }
     }
   };
@@ -398,7 +401,7 @@ function main() {
   winpopupContainer.addChild(winImage, winPopupTxt);
 
   app.stage.addChild(winpopupContainer);
-
+winpopupContainer.y = 75
   function showWin(result) {
 
     winpopupContainer.visible = true;
@@ -510,7 +513,7 @@ function main() {
     timeBench.beginFill(0xffffff, 0.7).drawRoundedRect(0, 0, 120, 39);
     timeBench.pivot.set(timeBench.width / 2, timeBench.height / 2);
     timeBench.x = top_bar.width / 2;
-    timeBench.y = top_bar.height / 4;
+    timeBench.y = top_bar.height / 4-35;
     console.log(timeBench);
 
     // timeBench.style.fill = 0xffffff
@@ -518,12 +521,12 @@ function main() {
     Timetext = new PIXI.Text("YOUR TIME", { fill: "white", fontSize: "25px" });
     Timetext.anchor.set(0.5, 0.5);
     Timetext.x = 193 + TimePosX;
-    Timetext.y = 100 + TimePosY;
+    Timetext.y = 100 + TimePosY-35;
 
     TimetextVal = new PIXI.Text("0", { fill: "white", fontSize: "25px" });
     TimetextVal.anchor.set(0.5, 0.5);
     TimetextVal.x = top_bar.width / 2; //193 + TimePosX;
-    TimetextVal.y = top_bar.height / 4; //130 + TimePosY;
+    TimetextVal.y = top_bar.height / 4-35; //130 + TimePosY;
     top_bar_container.addChild(timeBench, TimetextVal);
     // top_bar_container.addChild(timeBench, Timetext, TimetextVal);
 

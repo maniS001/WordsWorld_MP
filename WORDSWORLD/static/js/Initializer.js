@@ -190,32 +190,59 @@ app.stage.y = app.screen.height / 2;
 fitCanvas()
 
 function fitCanvas() {
-  app.renderer.view.style.position = "absolute";
-  if ((window.innerWidth / window.innerHeight) < 1366 / 768) {
-    appScale = (window.innerWidth) / (1366)
-  } else {
-    appScale = (window.innerHeight) / (768)
+  if(window.matchMedia("(orientation:landscape)").matches){
+      app.renderer.view.style.position = "absolute";
+      if ((window.innerWidth / window.innerHeight) < 1366 / 768) {
+        appScale = (window.innerWidth) / (1366)
+      } else {
+        appScale = (window.innerHeight) / (768)
+      }
+      app.renderer.view.style.transform = " scale(" + appScale + ")";
+      app.renderer.view.style.left = window.innerWidth / 2 - AppWidth / 2 + "px"
+      app.renderer.view.style.top = window.innerHeight / 2 - appHeight / 2 + "px" 
+
+      app.renderer.view.style.transitionDuration = "0s"
+      app.renderer.view.style.transformOrigin = " center center  ";
+      document.body.style.width = window.innerWidth + "px"
+      document.body.style.height = window.innerHeight + "px" 
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center top";
+      app.stage.scale.set(1)
+
+      if(Qntext){
+        Qntext.style.fontSize = 30
+        Qntext.style.wordWrapWidth = AppWidth/2
+      }      
+
   }
-  app.renderer.view.style.transform = " scale(" + appScale + ")";
-  app.renderer.view.style.left = window.innerWidth / 2 - AppWidth / 2 + "px"
-  app.renderer.view.style.top = window.innerHeight / 2 - appHeight / 2 + "px"
-  // app.renderer.view.style.backgroundColor = "tan"
-  // app.renderer.view.style.top = window.innerHeight / 2 - appHeight / 2 + "px"
-
-  app.renderer.view.style.transitionDuration = "0s"
-  app.renderer.view.style.transformOrigin = " center center  ";
-  document.body.style.width = window.innerWidth + "px"
-  document.body.style.height = window.innerHeight + "px"
-  // document.body.style.transform = " scale("+appScale+")";
-  // document.body.style.bottom = "100%"
-  document.body.style.backgroundSize = "cover"
-
-  document.body.style.backgroundPosition = "center top"
-  // document.body.style.transform = "scale("+window.innerHeight/768+")";
-  console.log(" resize window", window.innerWidth, window.innerWidth)
+  else{
+      app.renderer.view.style.position = "absolute";
+      if ((window.innerWidth / window.innerHeight) < 1366 / 768) {
+        appScale = (window.innerWidth) / (1366)*3
+      } else {
+        appScale = (window.innerHeight) / (768)*3
+      }
+      app.renderer.view.style.transform = " scale(" + appScale + ")";
+      app.renderer.view.style.left = window.innerWidth / 2 - AppWidth / 2 + "px"
+      app.renderer.view.style.top = window.innerHeight / 2 - appHeight / 2 + "px" 
+      app.renderer.view.style.transitionDuration = "0s"
+      app.renderer.view.style.transformOrigin = " center center  ";
+      document.body.style.width = window.innerWidth + "px"
+      document.body.style.height = window.innerHeight + "px" 
+      document.body.style.backgroundSize = "cover"
+      document.body.style.backgroundPosition = "center top" 
+      app.stage.scale.set(0.7)
+      if(Qntext){
+        Qntext.style.fontSize = 27
+        Qntext.style.wordWrapWidth = 500
+      }
+      // shapeAll.y = 150;
+      // shapeAll.scale.set(0.5) 
+  } 
 }
 window.onresize = function () {
-  fitCanvas()
+    fitCanvas();
+
 }
 
 

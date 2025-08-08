@@ -23,7 +23,7 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
         var myshape_Texture = new PIXI.Texture(myshape_BaseTexture);
         var myshape = PIXI.Sprite.from(myshape_Texture);
         myshape.anchor.set(0.5); 
-        myshape.scale.set(0.32);
+        myshape.scale.set(0.29);
 
         var letter_highlight = new PIXI.Graphics()
         letter_highlight.beginFill(0xFFA500).drawRoundedRect(0,0,myshape.width-5,myshape.height-5,5)
@@ -31,9 +31,9 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
         letter_highlight.position.set(2.5,2.5);
         letter_highlight.alpha = 0;
 
-        var txt = new PIXI.Text(letter,{ fill : "white"})
+        var txt = new PIXI.Text(letter,{ fill : "white",fontSize:30,fontWeight:"bold",dropShadow:true,dropShadowAlpha:0.3})
         txt.anchor.set(0.5)
-        txt.x =myshape.x-5
+        txt.x =myshape.x
         txt.y = myshape.y
         this.lettercon.addChild(myshape,txt)
 
@@ -51,6 +51,8 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
           
         }
         if(Identity==1){
+        myshape.scale.set(0.4);
+
           this.lettercon.on("pointerdown", function (){
             Parent.letterListener(this)
             Parent.DisableBtn(this)
