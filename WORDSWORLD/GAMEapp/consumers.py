@@ -88,7 +88,7 @@ class Consumers(AsyncWebsocketConsumer):
             if(len(self.QuestionNumbers)>0):
                 self.QnCount = random.choice(self.QuestionNumbers)  
                 answer_data = await get_Answer(str(self.Questions[self.QnCount]['question']))
-                time_count = 16
+                time_count = 31
                 self.start_timer(time_count)
                 text_data_json = {
                     **text_data_json,
@@ -135,7 +135,7 @@ class Consumers(AsyncWebsocketConsumer):
             answer_data = await get_Answer(str(self.Questions[self.QnCount]['question']))
             print(self.QnCount,answer_data,self.QuestionNumbers)
             
-            time_count = 16
+            time_count = 31
             self.start_timer(time_count)
             text_data_json = {
                 **text_data_json,
