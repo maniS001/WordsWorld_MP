@@ -222,14 +222,15 @@ function main_mult() {
     // ......................qn text creation...............................................................
     Qntext.text = qnNumber + 1 + ". " + qntxt;
     //.............. creating shuffled letter shapes to see in stage ........................................
-    var map = {};
+    map = {};
     for (i = 0; i < ShuffleArr.length; i++) {
       map["name_" + i] = LetterAndShape(
         ShuffleArr[i],
         483 + positionX * 80,
         90 + positionY * 80,
         1,
-        this
+        this,
+        i
       );  // using  class that create all shapes............................................................
 
       positionX += 1;
@@ -264,7 +265,8 @@ function main_mult() {
           // AppWidth / 2,
           Yval,
           0,
-          this
+          this,
+          k
         );
         AnsShapeArr.push(map2["shape_" + k]);
         console.log(AnsShapeArr[k].position,"AnsShapeArr")
@@ -281,26 +283,32 @@ function main_mult() {
     var key = event.keyCode || event.charCode;
     if (key == 8 || key == 46) Mult_Main.deleteFun();
   };
+ 
   this.deleteFun = function () {
     if (count > 0 && count <= Anslength) {
-      UserAnsarr.pop();
+     UserAnsarr.pop();
+     deleteObj =  UserAnsarr1.pop();
       letterBgArr.pop();
-      Interactiveflag = false;
-      console.log(count, "count111");
-
       count -= 1;
+      Interactiveflag = false; 
+      if(deleteObj.index)Parent.EnableBtn(map["name_" + deleteObj.index])
+
       Mult_Main.AnswerPlace("");
     }
   };
-  this.letterListener = function (txt_obj) {
-    console.log(txt_obj.Innertext);
+
+  this.letterListener = function (txt_obj,index=null) {
     txt = txt_obj.Innertext;
+    txt_obj.index = index;
+
     if (count >= 0 && count < Anslength) {
       Interactiveflag = true;
       // box_click = new Audio("static/sounds/box_click.wav");
       box_click.play();
 
       UserAnsarr.push(txt);
+  UserAnsarr1.push(txt_obj);
+
       // count += 1;
 
       Mult_Main.AnswerPlace(txt);
@@ -315,7 +323,11 @@ function main_mult() {
     btn.scale.set(1);
     btn.interactive = false;
   };
-
+  this.EnableBtn = (btn) => {
+    btn.alpha = 1;
+    btn.scale.set(1);
+    btn.interactive = true;
+  };
   // ..... this function will be activated when user clicks any letter and it will add text to empty space...
 
   this.AnswerPlace = function (text) {
@@ -406,6 +418,8 @@ function main_mult() {
     letterHighlight_arr = [];
     UserAnsText = "";
     UserAnsarr = [];
+  UserAnsarr1 = [];
+
     AnsShapeArr = [];
     positionX = 0;
     positionY = 0;

@@ -1,24 +1,16 @@
 globalThis.__PIXI_APP__ = app;
-function LetterAndShape(letter,X,Y,Identity,Parent){     
+function LetterAndShape(letter,X,Y,Identity,Parent,index=null){     
         //Number_btn
-        this.lettercon = new PIXI.Container()
-        // myshape = new PIXI.Graphics();
-        // myshape.beginFill(0x000000).drawRoundedRect(0, 0, 50, 50,10); #C576F6
-        tintclr = 0xFFFFFF
-        
-        
+        this.lettercon = new PIXI.Container(); 
+        tintclr = 0xFFFFFF;
         if(!letter){
           Number_btn1 = number_btn_empty;
         }else if(letter&&Identity==2){
-          Number_btn1 = Number_btn//Answer_btn;
+          Number_btn1 = Number_btn;//Answer_btn;
           tintclr = 0xFFFFFF
-        }
-        else{
+        } else{
           Number_btn1 = Number_btn
-        }
-
-
-
+        } 
         var myshape_BaseTexture = new PIXI.BaseTexture(Number_btn1);
         var myshape_Texture = new PIXI.Texture(myshape_BaseTexture);
         var myshape = PIXI.Sprite.from(myshape_Texture);
@@ -36,6 +28,7 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
         txt.x =myshape.x
         txt.y = myshape.y
         this.lettercon.addChild(myshape,txt)
+           this.lettercon.index = index; 
 
         this.lettercon.interactive = true
         this.lettercon.buttonMode = true
@@ -53,8 +46,8 @@ function LetterAndShape(letter,X,Y,Identity,Parent){
         if(Identity==1){
         myshape.scale.set(0.4);
 
-          this.lettercon.on("pointerdown", function (){
-            Parent.letterListener(this)
+          this.lettercon.on("pointerdown", function (){ 
+            Parent.letterListener(this,this.index)
             Parent.DisableBtn(this)
           })
           this.lettercon.on("pointerover", function (){

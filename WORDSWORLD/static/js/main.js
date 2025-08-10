@@ -181,14 +181,15 @@ function main() {
     Qntext.text = qnNumber + 1 + ". " + qntxt;
     console.log(ShuffleArr);
     //.............. creating shuffled letter shapes to see in stage ........................................
-    var map = {};
+    map = {};
     for (i = 0; i < ShuffleArr.length; i++) {
       map["name_" + i] = LetterAndShape(
         ShuffleArr[i],
         483 + positionX * 80,
         90 + positionY * 80,
         1,
-        this
+        this,
+        i
       ); // using  class that create all shapes............................................................
 
       positionX += 1;
@@ -224,7 +225,8 @@ function main() {
           // AppWidth / 2,
           Yval,
           0,
-          this
+          this,
+          k
         );
         AnsShapeArr.push(map2["shape_" + k]);
         console.log(AnsShapeArr[k].position,"AnsShapeArr")
@@ -243,20 +245,19 @@ function main() {
   };
   this.deleteFun = function () {
     if (count > 0 && count <= Anslength) {
-      UserAnsarr.pop();
+     deleteObj =  UserAnsarr.pop();
       letterBgArr.pop();
-
+      console.log(deleteObj.Innertext,deleteObj,"deleteObj");
       count -= 1;
-      Interactiveflag = false;
-      // if (AnswerWord[count] == " ") {
-      //   UserAnsarr.pop();
-      //   count -= 1;
-      // }
+      Interactiveflag = false; 
+      if(deleteObj.index)Parent.EnableBtn(map["name_" + deleteObj.index])
+
       Main.AnswerPlace("");
     }
   };
-  this.letterListener = function (txt_obj) {
+  this.letterListener = function (txt_obj,index=null) {
     txt = txt_obj.Innertext;
+    txt_obj.index = index;
     if (count >= 0 && count <= Anslength - 1) {
       // box_click = new Audio("static/sounds/box_click.wav");
       box_click.play();
@@ -267,7 +268,6 @@ function main() {
       //   count += 1;
       // }
       UserAnsarr.push(txt_obj); 
-
       Main.AnswerPlace(txt);
       // if(count<Anslength-1){
       count += 1;
@@ -279,8 +279,12 @@ function main() {
     btn.alpha = 0.7;
     btn.scale.set(1);
     btn.interactive = false;
+  }; 
+  this.EnableBtn = (btn) => {
+    btn.alpha = 1;
+    btn.scale.set(1);
+    btn.interactive = true;
   };
-
   // ..... this function will be activated when user clicks any letter and it will add text to empty space...
 
   this.AnswerPlace = function (text) {

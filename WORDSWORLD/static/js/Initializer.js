@@ -111,10 +111,8 @@ var Gametypeval = 0
 // LetterArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var Parent;
 var AnsArr = []
-
-var qnCount;
-
-
+var map = {}; 
+var qnCount; 
 function keyEventFun(event) {
   var KeyText = event.key;
   var key_obj={}

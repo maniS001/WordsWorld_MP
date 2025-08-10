@@ -64,6 +64,8 @@ function preload() {
   shapeAll.children = [];
   UserAnsText = "";
   UserAnsarr = [];
+  UserAnsarr1 = [];
+
   letterBgArr = [];
   AnsShapeArr = [];
   map2 = {};
