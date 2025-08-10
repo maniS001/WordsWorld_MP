@@ -301,6 +301,8 @@ def result(userAns,qn):
         AnsData = Quest_Ans.objects.filter(question__contains=qn).values("answer")
         AnsData = str(list(AnsData)[0]["answer"]).upper()
         AnsData = AnsData.replace(" ", "")
+        userAns = userAns.replace(" ", "")
+        
         print(userAns,AnsData,"AnsData")
         if(userAns == AnsData):
             result = "win"
