@@ -156,10 +156,12 @@ class Consumers(AsyncWebsocketConsumer):
             
             data = {
             "type":"result",
-            "result":User_result, 
+            "result":User_result["result"], 
+            "ans":User_result["ans"],
+            "user_ans":text_data_json['userAns']
             }
 
-            if(User_result=="win"):
+            if(User_result["result"]=="win"):
                 if hasattr(self, 'timer_interval') and self.timer_interval:
                     self.timer_interval.cancel()
                 else:
@@ -305,7 +307,7 @@ def result(userAns,qn):
             # return JsonResponse({'result':"win"}, safe=False) 
         else:
             result="try again"
-        return result
+        return {"result":result,"ans":AnsData}
             # return JsonResponse({'result':"loss"}, safe=False)
             
 def CreateUserId():

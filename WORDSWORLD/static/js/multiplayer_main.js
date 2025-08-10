@@ -465,7 +465,7 @@ function main_mult() {
   }
 
   this.websocker_receivefun = (data) => {
-    console.log(data);
+
     if (data.type == "sync_time") {
       timeCount = data.time;
       timeCount1 = String(timeCount).leftJustify(2, "0");
@@ -513,6 +513,8 @@ function main_mult() {
     }
 
     if (data.type == "result") {
+    console.log(data.ans,data.user_ans,"answer");
+
       if (data.result == "win") {
         if (data.winner == UserId) {
           pointval++;
