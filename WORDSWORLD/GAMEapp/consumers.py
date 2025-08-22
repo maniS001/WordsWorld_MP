@@ -270,9 +270,10 @@ def ShuffleLetters(AnsData):
     # Assuming ans is a string containing the answer
     AnswerWord = AnsData.upper()
     ShuffleArr = list(AnswerWord)
+    TotalBoxesCount = (len(ShuffleArr)+5) if len(ShuffleArr)<25 else 30
 
     # Inserting random letters into the array
-    while len(ShuffleArr) < 30:
+    while len(ShuffleArr) < TotalBoxesCount:
         randtemp = random.randint(0, len(LetterArr) - 1)
         if randtemp > 0:
             ShuffleArr.append(LetterArr[randtemp])
@@ -281,7 +282,7 @@ def ShuffleLetters(AnsData):
     random.shuffle(ShuffleArr)
     
     i = 0
-    while i < 30:
+    while i < TotalBoxesCount:
         if ShuffleArr[i] == " ":
             ShuffleArr.pop(i)
             randtemp = random.randint(0, len(LetterArr) - 1)

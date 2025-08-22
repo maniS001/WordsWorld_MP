@@ -208,7 +208,7 @@ function fitCanvas() {
       app.stage.scale.set(1)
 
       if(Qntext){
-        Qntext.style.fontSize = 30
+        Qntext.style.fontSize = 35
         Qntext.style.wordWrapWidth = AppWidth/2
       }      
 

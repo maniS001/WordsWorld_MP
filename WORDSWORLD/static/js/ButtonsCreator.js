@@ -23,12 +23,12 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null){
         letter_highlight.position.set(2.5,2.5);
         letter_highlight.alpha = 0;
 
-        var txt = new PIXI.Text(letter,{ fill : "white",fontSize:30,fontWeight:"bold",dropShadow:true,dropShadowAlpha:0.3})
+        var txt = new PIXI.Text(letter,{ fill : "white",fontSize:45,fontWeight:"bold",dropShadow:true,dropShadowAlpha:0.3,dropShadowBlur:2})
         txt.anchor.set(0.5)
-        txt.x =myshape.x
+        txt.x =myshape.x-3
         txt.y = myshape.y
         this.lettercon.addChild(myshape,txt)
-           this.lettercon.index = index; 
+        this.lettercon.index = index; 
 
         this.lettercon.interactive = true
         this.lettercon.buttonMode = true
@@ -38,22 +38,17 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null){
         this.lettercon.y = Y
         if(!letter&&Identity!=2){
           this.lettercon.x = X + myshape.width/2
-        letterHighlight_arr.push(letter_highlight);
-
-          this.lettercon.addChildAt(letter_highlight,0)
-          
+          letterHighlight_arr.push(letter_highlight); 
+          this.lettercon.addChildAt(letter_highlight,0) 
         }
         if(Identity==1){
-        myshape.scale.set(0.4);
-
+        myshape.scale.set(0.4); 
           this.lettercon.on("pointerdown", function (){ 
             Parent.letterListener(this,this.index)
             Parent.DisableBtn(this)
           })
           this.lettercon.on("pointerover", function (){
-            this.scale.set(0.9); 
-
-            // del_snd = new Audio("static/sounds/del_snd.wav");
+            this.scale.set(0.9);   
             del_snd.play(); 
           })
           this.lettercon.on("pointerout", function (){
@@ -65,16 +60,14 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null){
           this.lettercon.scale.set(2);
           setTimeout(() => {
           this.lettercon.scale.set(1); 
-          // shapeAll.addChild(lettercon)
+          myshape.tint = 0x5cff0aff;
           shapeAll.children.forEach(element => {
             element.scale.set(1); 
-            
+            //  "#429e14ff" 
           });
           }, 100);
-          // myshape.tint = "#ffffff"
      
         }
-
-        shapeAll.addChild(lettercon);
+        shapeAll.addChild(lettercon); 
         return this.lettercon;
 }

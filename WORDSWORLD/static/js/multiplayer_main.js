@@ -221,42 +221,78 @@ function main_mult() {
     HideWin();
     // ......................qn text creation...............................................................
     Qntext.text = qnNumber + 1 + ". " + qntxt;
+ let TotalHeight = 0;
+    let statingYpos = 0;
     //.............. creating shuffled letter shapes to see in stage ........................................
-    map = {};
-    for (i = 0; i < ShuffleArr.length; i++) {
-      map["name_" + i] = LetterAndShape(
-        ShuffleArr[i],
-        483 + positionX * 80,
-        90 + positionY * 80,
-        1,
-        this,
-        i
-      );  // using  class that create all shapes............................................................
+function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, createShapeFn) {
+    let total = letters.length;
 
-      positionX += 1;
-      if (positionX == 6) {
-        positionX = 0;
-        positionY += 1;
-      }
+    // Best-fit columns (close to square, but capped at 6)
+    let cols = Math.ceil(Math.sqrt(total));
+    cols = Math.min(cols, 6);
 
-      // }
+    // Rows needed
+    let rows = Math.ceil(total / cols);
+    TotalHeight = rows;
+    // Calculate grid total width & height
+    let gridWidth = (cols - 1) * gapX;
+    let gridHeight = (rows - 1) * gapY;
+
+    // Top-left starting point so grid is centered
+    let startX = (screenWidth - gridWidth) / 2;
+    let startY = (screenHeight - gridHeight) / 2;
+    statingYpos = startY;
+    let map = {};
+    let i = 0;
+
+    for (let row = 0; row < rows; row++) {
+        // How many letters in this row
+        let lettersInRow = (row === rows - 1) 
+            ? total - i 
+            : cols;
+
+        // Calculate centering offset for last row
+        let rowWidth = (lettersInRow - 1) * gapX;
+        let offsetX = (gridWidth - rowWidth) / 2;
+
+        for (let col = 0; col < lettersInRow; col++) {
+            let x = startX + col * gapX + offsetX;
+            let y = startY + row * gapY;
+
+            map["name_" + i] = createShapeFn(letters[i], x, y, 1, this, i);
+            i++;
+        }
     }
+
+    return map;
+}
+
+// Example usage:
+ map = placeLettersCentered(
+    ShuffleArr,
+    1366, // Screen width
+    440,  // Screen height
+    80,   // X gap between letters
+    80,   // Y gap between letters
+    LetterAndShape.bind(this)
+);
+
+
 
     //.................. creating empty shapes to let the user to fill  .....................................
     var AnsAllshape = new PIXI.Container();
     AnsAllshape.x = shapeAll.x;
     AnsAllshape.pivot.x = shapeAll.x / 2;
-
-    Yval = 400;
+    Yval = (TotalHeight)*80+statingYpos+30
+    console.log(TotalHeight,"TotalHeight")
     decval = 0;
-    console.log(SpaceInfo, "SpaceInfoSpaceInfo");
     for (index = 0; index < SpaceInfo.length; index++) {
-      console.log(SpaceInfo[index]);
-      setBlankboxes(SpaceInfo[index] - decval, Yval+110);
+      setBlankboxes(SpaceInfo[index] - decval, Yval);
       decval = SpaceInfo[index];
       SpaceInfo[index];
-      Yval += 73;
+      Yval += 80;
     }
+
     function setBlankboxes(Anslength1, Yval) {
       for (k = 0; k <= Anslength1 - 1; k++) {
         map2["shape_" + k] = LetterAndShape(
@@ -275,7 +311,6 @@ function main_mult() {
       }
     }
   };
-
   //.........................................................................................................
 
   document.addEventListener("keypress", keyEventFun, false);
