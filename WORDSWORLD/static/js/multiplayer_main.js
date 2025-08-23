@@ -219,6 +219,8 @@ function main_mult() {
   //....................creating function that used to create all letters for the game .....................
   this.CreateShuffledLetters = function (qntxt, ans) {
     HideWin();
+    app.stage.interactiveChildren = true;
+
     // ......................qn text creation...............................................................
     Qntext.text = qnNumber + 1 + ". " + qntxt;
  let TotalHeight = 0;
@@ -284,7 +286,6 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
     AnsAllshape.x = shapeAll.x;
     AnsAllshape.pivot.x = shapeAll.x / 2;
     Yval = (TotalHeight)*80+statingYpos+30
-    console.log(TotalHeight,"TotalHeight")
     decval = 0;
     for (index = 0; index < SpaceInfo.length; index++) {
       setBlankboxes(SpaceInfo[index] - decval, Yval);
@@ -293,23 +294,41 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
       Yval += 80;
     }
 
-    function setBlankboxes(Anslength1, Yval) {
-      for (k = 0; k <= Anslength1 - 1; k++) {
-        map2["shape_" + k] = LetterAndShape(
-          "",
-          AppWidth / 2 - (Anslength1 / 2) * 65 + k * 65,
-          // AppWidth / 2,
-          Yval,
-          0,
-          this,
-          k
-        );
-        AnsShapeArr.push(map2["shape_" + k]);
-        console.log(AnsShapeArr[k].position,"AnsShapeArr")
-        ClearBut.x =AppWidth / 2// map2["shape_" + k].x + map2["shape_" + k].width;
-        ClearBut.y = map2["shape_" + k].y + 225;
-      }
+function setBlankboxes(Anslength1, Yval) {
+    let maxPerRow = 9;            // max letters allowed visually per row
+    let baseBoxSize = 65;         // your original box spacing
+    let rowWidth = Anslength1 * baseBoxSize;
+
+    // If row is too long, calculate a shrink scale
+    let scaleFactor = 1;
+    if (Anslength1 > maxPerRow) {
+        rowWidth = maxPerRow * baseBoxSize;
+        scaleFactor = (maxPerRow / Anslength1); // shrink to fit
     }
+
+    for (let k = 0; k < Anslength1; k++) {
+        let x = AppWidth / 2 - (rowWidth / 2) + k * baseBoxSize * scaleFactor;
+
+        map2["shape_" + k] = LetterAndShape(
+            "",
+            x-10,
+            Yval,
+            0,
+            this,
+            k
+        );
+
+        // Scale the letter box if needed
+        map2["shape_" + k].scale.set(scaleFactor);
+        map2["shape_" + k].scaleFactor = scaleFactor
+
+        AnsShapeArr.push(map2["shape_" + k]);
+
+        // Position clear button relative to row
+        ClearBut.x = AppWidth / 2;
+        ClearBut.y = map2["shape_" + k].y + 225;
+    }
+}
   };
   //.........................................................................................................
 
@@ -373,7 +392,9 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
       AnsShapeArr[count].x,
       AnsShapeArr[count].y,
       2,
-      this
+      this,
+      null,
+      AnsShapeArr[count].scaleFactor
     );
     // if(!text){
     //   if(count>0){
@@ -398,6 +419,8 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
       UserAnsarr.forEach((element) => {
         UserAnsText = UserAnsText + String(element);
       });
+app.stage.interactiveChildren = false;
+
       //..................to verify if user ans is correct or wrong.........................................
       console.log(UserId, "UserId");
       socket.send(
@@ -532,6 +555,7 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
       Anslength = Number(data.length);
       SpaceInfo = data.spaceInfo;
       console.log(ShuffleArr, "ShuffleArr");
+
       // Mult_Mult_Main.CreateShuffledLetters(QnsArr[qnCount], AnsArr[qnCount]);
       ResetAll();
     }

@@ -46,12 +46,7 @@ function preload() {
 
   app.renderer.view.style.backgroundImage = ""
 //............
-  qnNumbersArr =  Array.from({ length: 50 }, (_, i) => i);
-  let randomIndex = Math.floor(Math.random() * qnNumbersArr.length);
-  // Get the randomly selected value
-  qnCount = qnNumbersArr[randomIndex];
-  qnNumber = QnsArr.length-qnNumbersArr.length;
-  qnNumbersArr.splice(randomIndex, 1);
+
 
 //   let clickEvent_Close = new MouseEvent("click", {
 //     bubbles: true,

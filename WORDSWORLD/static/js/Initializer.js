@@ -106,6 +106,8 @@ var socket;
 var PointsPosX = 925
 var PointsPosY = -50
 var qnNumbersArr;
+  qnNumbersArr =  Array.from({ length: 50 }, (_, i) => i);
+
 var ClearButtt, ClearButt, ClearBut, PointBench, PointBenchh, PointBenchhh;
 var Gametypeval = 0
 // LetterArr = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -147,6 +149,11 @@ $.ajax({
        Quest_set = data["data"][element]
         QnsArr.push(Quest_set["question"]);
       } 
+        let randomIndex = Math.floor(Math.random() * qnNumbersArr.length);
+  // Get the randomly selected value
+        qnCount = qnNumbersArr[randomIndex];
+        qnNumber = QnsArr.length-qnNumbersArr.length;
+        qnNumbersArr.splice(randomIndex, 1);
   },
   error: function (error) {
       console.error('Error:', error);

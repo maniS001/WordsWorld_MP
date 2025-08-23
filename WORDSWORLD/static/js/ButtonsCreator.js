@@ -1,10 +1,12 @@
 globalThis.__PIXI_APP__ = app;
-function LetterAndShape(letter,X,Y,Identity,Parent,index=null){     
+function LetterAndShape(letter,X,Y,Identity,Parent,index=null,scaleFactor){     
         //Number_btn
         this.lettercon = new PIXI.Container(); 
         tintclr = 0xFFFFFF;
         if(!letter){
           Number_btn1 = number_btn_empty;
+          this.lettercon.scale.set(scaleFactor); 
+
         }else if(letter&&Identity==2){
           Number_btn1 = Number_btn;//Answer_btn;
           tintclr = 0xFFFFFF
@@ -40,6 +42,8 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null){
           this.lettercon.x = X + myshape.width/2
           letterHighlight_arr.push(letter_highlight); 
           this.lettercon.addChildAt(letter_highlight,0) 
+          
+
         }
         if(Identity==1){
         myshape.scale.set(0.4); 
@@ -58,14 +62,15 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null){
         }else if(Identity==2&&letter){
           letterBgArr.push(myshape)
           this.lettercon.scale.set(2);
-          setTimeout(() => {
-          this.lettercon.scale.set(1); 
-          myshape.tint = 0x5cff0aff;
+          setTimeout((lettercon) => {
+          lettercon[0].scale.set(scaleFactor); 
+          console.log(scaleFactor,"scaleFactor")
+          lettercon[1].tint = 0x5cff0aff;
           shapeAll.children.forEach(element => {
-            element.scale.set(1); 
+            // element.scale.set(1); 
             //  "#429e14ff" 
           });
-          }, 100);
+          }, 100,[this.lettercon,myshape]);
      
         }
         shapeAll.addChild(lettercon); 

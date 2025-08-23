@@ -178,10 +178,12 @@ function main() {
   //....................creating function that used to create all letters for the game .....................
   this.CreateShuffledLetters = function (qntxt, ans) {
     // ......................qn text creation...............................................................
-    Qntext.text = qnNumber + 1 + ". " + qntxt;
+    Qntext.text = (qnNumber + 1) + ". " + qntxt;
     console.log(ShuffleArr);
     let TotalHeight = 0;
     let statingYpos = 0;
+    app.stage.interactiveChildren = true;
+
     //.............. creating shuffled letter shapes to see in stage ........................................
 function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, createShapeFn) {
     let total = letters.length;
@@ -246,29 +248,49 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
     console.log(TotalHeight,"TotalHeight")
     decval = 0;
     for (index = 0; index < SpaceInfo.length; index++) {
+      // setBlankboxes(15, Yval);
       setBlankboxes(SpaceInfo[index] - decval, Yval);
       decval = SpaceInfo[index];
       SpaceInfo[index];
       Yval += 80;
     }
 
-    function setBlankboxes(Anslength1, Yval) {
-      for (k = 0; k <= Anslength1 - 1; k++) {
-        map2["shape_" + k] = LetterAndShape(
-          "",
-          AppWidth / 2 - (Anslength1 / 2) * 65 + k * 65,
-          // AppWidth / 2,
-          Yval,
-          0,
-          this,
-          k
-        );
-        AnsShapeArr.push(map2["shape_" + k]);
-        console.log(AnsShapeArr[k].position,"AnsShapeArr")
-        ClearBut.x =AppWidth / 2// map2["shape_" + k].x + map2["shape_" + k].width;
-        ClearBut.y = map2["shape_" + k].y + 225;
-      }
+function setBlankboxes(Anslength1, Yval) {
+    let maxPerRow = 9;            // max letters allowed visually per row
+    let baseBoxSize = 65;         // your original box spacing
+    let rowWidth = Anslength1 * baseBoxSize;
+
+    // If row is too long, calculate a shrink scale
+    let scaleFactor = 1;
+    if (Anslength1 > maxPerRow) {
+        rowWidth = maxPerRow * baseBoxSize;
+        scaleFactor = (maxPerRow / Anslength1); // shrink to fit
     }
+
+    for (let k = 0; k < Anslength1; k++) {
+        let x = AppWidth / 2 - (rowWidth / 2) + k * baseBoxSize * scaleFactor;
+
+        map2["shape_" + k] = LetterAndShape(
+            "",
+            x-10,
+            Yval,
+            0,
+            this,
+            k
+        );
+
+        // Scale the letter box if needed
+        map2["shape_" + k].scale.set(scaleFactor);
+        map2["shape_" + k].scaleFactor = scaleFactor
+
+        AnsShapeArr.push(map2["shape_" + k]);
+
+        // Position clear button relative to row
+        ClearBut.x = AppWidth / 2;
+        ClearBut.y = map2["shape_" + k].y + 225;
+    }
+}
+
   };
 
   //.........................................................................................................
@@ -323,19 +345,21 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
   // ..... this function will be activated when user clicks any letter and it will add text to empty space...
 
   this.AnswerPlace = function (text) {
-    console.log(AnsShapeArr[count].position,"AnsShapeArr222")
+    console.log(AnsShapeArr[count].position,AnsShapeArr[count].scaleFactor,"scaleFactor")
     map2["shape_" + count] = LetterAndShape(
       text,
       AnsShapeArr[count].x,
       AnsShapeArr[count].y,
       2,
-      this
+      this,
+      null,
+      AnsShapeArr[count].scaleFactor
     );
     if (count == Anslength - 1 && text) {
       UserAnsarr.forEach((element) => {
         UserAnsText = UserAnsText + String(element.Innertext);
       });
-
+app.stage.interactiveChildren = false;
       //..................to verify if user ans.........................................
       $.ajax({
         url: "result",
@@ -378,7 +402,8 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
             }
           } else {
             winpopupContainer.visible = true;
-            // loss_snd = new Audio("static/sounds/loss_snd.wav");
+        // app.stage.interactiveChildren = true;
+
           loss_snd.play();
 
             winPopupTxt.text = "Try Again!!"; 
@@ -391,7 +416,7 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
             // qnCount++;
             // ShuffleArr = [];
             // app.stage.removeChild(Qntext);
-
+            // Qntext.text = "Loading..."
             setTimeout(() => {
               letterBgArr.forEach(element => {
                 element.tint ="white"
@@ -414,6 +439,7 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
         },
         error: function (error) {
           console.error("Error:", error);
+
         },
       });
     }
@@ -468,9 +494,9 @@ winpopupContainer.y = 75
     // qnCount = Math.random(qnNumbersArr) 
     let randomIndex = Math.floor(Math.random() * qnNumbersArr.length);
 // Get the randomly selected value
-     qnCount = qnNumbersArr[randomIndex];
+    qnCount = qnNumbersArr[randomIndex];
     qnNumber = QnsArr.length-qnNumbersArr.length;
-  console.log(qnNumber,"qnNumber")
+    console.log(qnNumber,"qnNumber")
 
     qnNumbersArr.splice(randomIndex, 1);
     ShuffleArr = [];
@@ -487,6 +513,8 @@ winpopupContainer.y = 75
     timeCount = 31;
     count = 0;
     // }else{
+            Qntext.text = "Loading..."
+
     $.ajax({
       url: "get-Answer",
       type: "GET",
@@ -611,6 +639,8 @@ winpopupContainer.y = 75
   //   };
   //   socket.send(JSON.stringify(get_answer_data));
   // } else {
+            Qntext.text = "Loading..."
+
     console.log(qnCount,"qnCount")
   $.ajax({
     url: "get-Answer",
