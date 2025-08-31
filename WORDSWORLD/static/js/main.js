@@ -1,4 +1,6 @@
 function main() {
+
+  // Change for landscape
   // app.renderer.view.classList.add("border", "border-black", "shadow");
   document.getElementById("tsparticle").style.visibility = "hidden";
 
