@@ -1,4 +1,7 @@
 function main_mult() {
+      if(window.matchMedia("(orientation:landscape)").matches){
+        app.renderer.view.classList.add("border", "border-black", "shadow"); 
+    }
   // app.renderer.view.classList.add("border", "border-black", "shadow");
   document.getElementById("tsparticle").style.visibility = "hidden";
   // ............creating a stage to keep all  things ......................................................
@@ -84,7 +87,10 @@ function main_mult() {
   );
   pointsContainer.y = -185-35;
   pointsContainer.x = 120-230;
-
+  if(window.matchMedia("(orientation:landscape)").matches){
+    pointsContainer.y = -185;
+    pointsContainer.x = 120;
+  }
   top_bar_container.addChild(pointsContainer);
 
   // ............................................
@@ -178,11 +184,18 @@ function main_mult() {
     Mult_Main.deleteFun();
   });
 
-  Exitfun(70+350, top_bar.height / 4);
+    if(window.matchMedia("(orientation:landscape)").matches){
+        Exitfun(70, top_bar.height / 4);
+    }else{
+        Exitfun(70+350, top_bar.height / 4);
+    }
   function Exitfun(posX, posY) {
     ExitBut = PIXI.Sprite.from("../static/image/ExitBut_img.png");
     ExitBut.x = posX;
     ExitBut.y = posY-35;
+    if(window.matchMedia("(orientation:landscape)").matches){
+      ExitBut.y = posY;
+    }    
     console.log(ExitBut.width / 2);
     ExitBut.anchor.set(0.5, 0.5);
     ExitBut.scale.x = 0.25;
@@ -270,14 +283,25 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
 }
 
 // Example usage:
- map = placeLettersCentered(
-    ShuffleArr,
-    1366, // Screen width
-    440,  // Screen height
-    80,   // X gap between letters
-    80,   // Y gap between letters
-    LetterAndShape.bind(this)
-);
+    if(window.matchMedia("(orientation:landscape)").matches){
+      map = placeLettersCentered(
+          ShuffleArr,
+          1366, // Screen width
+          440,  // Screen height
+          65,   // X gap between letters
+          65,   // Y gap between letters
+          LetterAndShape.bind(this)
+      );
+    }else{
+      map = placeLettersCentered(
+          ShuffleArr,
+          1366, // Screen width
+          440,  // Screen height
+          80,   // X gap between letters
+          80,   // Y gap between letters
+          LetterAndShape.bind(this)
+      );
+    }
 
 
 
@@ -285,7 +309,11 @@ function placeLettersCentered(letters, screenWidth, screenHeight, gapX, gapY, cr
     var AnsAllshape = new PIXI.Container();
     AnsAllshape.x = shapeAll.x;
     AnsAllshape.pivot.x = shapeAll.x / 2;
-    Yval = (TotalHeight)*80+statingYpos+30
+    Yval = (TotalHeight)*80+statingYpos+30;
+           if(window.matchMedia("(orientation:landscape)").matches){
+       Yval = (TotalHeight)*60+statingYpos+30
+
+    }
     decval = 0;
     for (index = 0; index < SpaceInfo.length; index++) {
       setBlankboxes(SpaceInfo[index] - decval, Yval);
@@ -327,6 +355,10 @@ function setBlankboxes(Anslength1, Yval) {
         // Position clear button relative to row
         ClearBut.x = AppWidth / 2;
         ClearBut.y = map2["shape_" + k].y + 225;
+        if(window.matchMedia("(orientation:landscape)").matches){
+          ClearBut.x = map2["shape_" + k].x + map2["shape_" + k].width;
+          ClearBut.y = map2["shape_" + k].y + 150;
+        }        
     }
 }
   };
@@ -455,7 +487,10 @@ app.stage.interactiveChildren = false;
 
   winpopupContainer.addChild(winImage, winPopupTxt);
   app.stage.addChild(winpopupContainer);
-
+  winpopupContainer.y = 75
+  if(window.matchMedia("(orientation:landscape)").matches){
+    winpopupContainer.y = 0
+  }
   function showWin(result) {
     winpopupContainer.visible = true;
     winPopupTxt.text = result;
@@ -518,21 +553,27 @@ app.stage.interactiveChildren = false;
     timeBench.x = top_bar.width / 2;
     timeBench.y = top_bar.height / 4-35;
     console.log(timeBench);
-
+    if(window.matchMedia("(orientation:landscape)").matches){
+      timeBench.y = top_bar.height / 4;
+    }
     // timeBench.style.fill = 0xffffff
 
     Timetext = new PIXI.Text("YOUR TIME", { fill: "white", fontSize: "25px" });
     Timetext.anchor.set(0.5, 0.5);
     Timetext.x = 193 + TimePosX;
     Timetext.y = 100 + TimePosY-35;
-
+    if(window.matchMedia("(orientation:landscape)").matches){
+      Timetext.y = 100 + TimePosY;
+    }
     TimetextVal = new PIXI.Text("0", { fill: "white", fontSize: "25px" });
     TimetextVal.anchor.set(0.5, 0.5);
     TimetextVal.x = top_bar.width / 2; //193 + TimePosX;
     TimetextVal.y = top_bar.height / 4-35; //130 + TimePosY;
     top_bar_container.addChild(timeBench, TimetextVal);
     // top_bar_container.addChild(timeBench, Timetext, TimetextVal);
-
+    if(window.matchMedia("(orientation:landscape)").matches){
+      TimetextVal.y = top_bar.height / 4;
+    }
     //...............Interval to create time duration..........................................................
   }
 

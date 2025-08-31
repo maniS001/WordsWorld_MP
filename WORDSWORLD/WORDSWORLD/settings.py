@@ -94,14 +94,14 @@ CHANNEL_LAYERS = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'wordsworld_data',
-    #     'USER': 'postgres',
-    #     'HOST': 'localhost',  # This is the service name of your PostgreSQL container
-    #     'PASSWORD': '1234',
-    # },
-        'default': dj_database_url.parse("postgresql://multiplayer_db_outk_user:qtJCXAI5vBsh9a69Y3GptqujekZyLItg@dpg-d261sqe3jp1c73ccfk7g-a.singapore-postgres.render.com/multiplayer_db_outk")
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'wordsworld_data',
+        'USER': 'postgres',
+        'HOST': 'localhost',  # This is the service name of your PostgreSQL container
+        'PASSWORD': '1234',
+    },
+        # 'default': dj_database_url.parse("postgresql://multiplayer_db_outk_user:qtJCXAI5vBsh9a69Y3GptqujekZyLItg@dpg-d261sqe3jp1c73ccfk7g-a.singapore-postgres.render.com/multiplayer_db_outk")
         # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
     
