@@ -19,6 +19,7 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null,scaleFactor){
         myshape.anchor.set(0.5); 
         myshape.scale.set(0.29);
 
+
         var letter_highlight = new PIXI.Graphics()
         letter_highlight.beginFill(0xFFA500).drawRoundedRect(0,0,myshape.width-5,myshape.height-5,5)
         letter_highlight.pivot.set(myshape.width/2,myshape.height/2);
@@ -45,8 +46,11 @@ function LetterAndShape(letter,X,Y,Identity,Parent,index=null,scaleFactor){
           
 
         }
-        if(Identity==1){
-        myshape.scale.set(0.4); 
+        if(Identity==1){ 
+          myshape.scale.set(0.4); 
+          if(window.matchMedia("(orientation:landscape)").matches){
+            myshape.scale.set(0.32); 
+          }
           this.lettercon.on("pointerdown", function (){ 
             Parent.letterListener(this,this.index)
             Parent.DisableBtn(this)
