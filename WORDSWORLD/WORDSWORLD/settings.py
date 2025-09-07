@@ -101,7 +101,7 @@ DATABASES = {
     #     'HOST': 'localhost',  # This is the service name of your PostgreSQL container
     #     'PASSWORD': '1234',
     # },
-        'default': dj_database_url.parse("postgresql://multiplayer_db_outk_user:qtJCXAI5vBsh9a69Y3GptqujekZyLItg@dpg-d261sqe3jp1c73ccfk7g-a.singapore-postgres.render.com/multiplayer_db_outk")
+        'default': dj_database_url.parse('postgresql://neondb_owner:npg_zKFwMIa7lgA1@ep-ancient-field-adenrxkl-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require')
         # 'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
     

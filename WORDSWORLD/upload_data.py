@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WORDSWORLD.settings')
 django.setup()
 from GAMEapp.models import Quest_Ans
-Quest_Ans.objects.all().delete()
+# Quest_Ans.objects.all().delete()
 
 data_to_insert =  [
   # { "question": "What is the capital of Australia?", "answer": "Canberra" },
